@@ -7,8 +7,8 @@ import {
 
 const userRouter = express.Router();
 
-userRouter.get("/:id", userDetail);
-userRouter.get("/:id/edit", editProfile);
+userRouter.get("/edit-profile", editProfile);
 userRouter.get("/change-password", changePassword);
+userRouter.get("/:id", userDetail);
 
 export default userRouter;
