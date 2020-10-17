@@ -1,4 +1,17 @@
-export const join = (req, res) => res.render("join", { pageTitle: "Join" });
+export const join = (req, res) => {
+  if (req.method === "GET") {
+    res.render("join", { pageTitle: "Join" });
+  } else if (req.method === "POST") {
+    const { password, password2 } = req.body;
+    console.log(password, password2);
+    if (password !== password2) {
+      res.status(400); // 클라이언트 에러, 비번틀림
+      res.render("join", { pageTitle: "Join" });
+    } else {
+      res.redirect("/"); // 로그인 시 home으로 감
+    }
+  }
+};
 export const login = (req, res) => res.render("login", { pageTitle: "Login" });
 export const logout = (req, res) =>
   res.render("logout", { pageTitle: "Logout" });

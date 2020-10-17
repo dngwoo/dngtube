@@ -1,11 +1,9 @@
 extends templates/layout
 
 block content
-    .form__container
-        form(action="/login", method="post")
-            input(type="text", method="post", placeholder="Full Name")
-            input(type="email", name="email", placeholder="Email")
-            input(type="password", placeholder="Password")
-            input(type="password", placeholder="Verify Password")
-            input(type="submit", value="Join Now")
+    .form-container
+        form(action=routes.login, method="post")
+            input(type="email", name="email", placeholder="Email", required=true)
+            input(type="password", name="password", placeholder="Password", required=true)
+            input(type="submit",value="Log In")
         include partials/socialLogin

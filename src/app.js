@@ -13,6 +13,8 @@ app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 app.use(helmet());
 app.use(morgan("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(localsMiddleware);
 
 app.use("/", globalRouter);

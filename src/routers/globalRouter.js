@@ -5,7 +5,7 @@ import { home, search } from "../controllers/videoController";
 const globalRouter = express.Router();
 
 globalRouter.get("/", home);
-globalRouter.get("/join", join);
+globalRouter.route("/join").get(join).post(join);
 globalRouter.get("/login", login);
 globalRouter.get("/logout", logout);
 globalRouter.get("/search", search);
