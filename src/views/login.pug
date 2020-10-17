@@ -1,4 +1,11 @@
 extends templates/layout
 
 block content
-    p login
+    .form__container
+        form(action="/login", method="post")
+            input(type="text", method="post", placeholder="Full Name")
+            input(type="email", name="email", placeholder="Email")
+            input(type="password", placeholder="Password")
+            input(type="password", placeholder="Verify Password")
+            input(type="submit", value="Join Now")
+        include partials/socialLogin
