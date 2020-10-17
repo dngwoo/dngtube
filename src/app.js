@@ -5,6 +5,7 @@ import helmet from "helmet";
 import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
+import { localsMiddleware } from "./middlewares";
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 app.use(helmet());
 app.use(morgan("dev"));
+app.use(localsMiddleware);
 
 app.use("/", globalRouter);
 app.use("/users", userRouter);
