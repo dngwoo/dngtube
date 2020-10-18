@@ -10,9 +10,19 @@ export const home = async (req, res) => {
   }
 };
 
-export const search = (req, res) => {
+export const search = async (req, res) => {
   const { term } = req.query;
-  res.render("search", { pageTitle: "Search", term });
+  let videos;
+
+  try {
+    videos = await Video.find({
+      title: { $regx: term, $options: "i" }, // title이 term인애를 찾음. 대소문자 구분x
+    });
+  } catch (error) {
+    console.error(error);
+  } finally {
+    res.render("search", { pageTitle: "Search", term, videos });
+  }
 };
 
 export const upload = async (req, res) => {
