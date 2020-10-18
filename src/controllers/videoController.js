@@ -15,12 +15,22 @@ export const search = (req, res) => {
   res.render("search", { pageTitle: "Search", term });
 };
 
-export const upload = (req, res) => {
+export const upload = async (req, res) => {
   if (req.method === "GET") {
     res.render("upload", { pageTitle: "Upload" });
   } else if (req.method === "POST") {
-    const { file, title, description } = req.body;
-    res.redirect("/333333");
+    const {
+      file: { path },
+      body: { title, description },
+    } = req;
+
+    const newVideo = await Video.create({
+      fileUrl: path,
+      title,
+      description,
+    }); // 컬렉션에 다큐먼트 생성(e.g. mysql - row)
+
+    res.redirect(`/${newVideo.id}`);
   }
 };
 

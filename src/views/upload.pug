@@ -2,9 +2,9 @@ extends templates/layout
 
 block content
     .form-container
-        form(action=`/videos/upload`, method="post")
+        form(action=`/videos/upload`, method="post" enctype="multipart/for-data")
             label(for="file") Video File
-            input(type="file", id="file", name="file" required=true)
+            input(type="file", id="file", name="videoFile" required=true, accept="video/*")
             input(type="text", placeholder="Title", name="title" required=true)
             textarea(name="description", placeholder="Description" required=true)
             input(type="submit", value="Upload Video")
