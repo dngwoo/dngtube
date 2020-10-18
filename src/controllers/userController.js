@@ -21,8 +21,8 @@ export const login = (req, res) => {
   }
 };
 
-export const logout = (req, res) =>
-  res.render("logout", { pageTitle: "Logout" });
+export const logout = (req, res) => res.redirect("/");
+
 export const userDetail = (req, res) =>
   res.render("userDetail", { pageTitle: "User Detail" });
 export const editProfile = (req, res) =>
