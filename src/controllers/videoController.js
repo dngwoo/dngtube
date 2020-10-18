@@ -1,4 +1,14 @@
-export const home = (req, res) => res.render("home", { pageTitle: "Home" });
+import Video from "../models/Video";
+
+export const home = async (req, res) => {
+  try {
+    const videos = await Video.find({}); // videos라는 컬렉션에서 모든 비디오를 찾음.
+    res.render("home", { pageTitle: "Home", videos });
+  } catch (error) {
+    console.error(error);
+    res.render("home", { pageTitle: "Home", videos: [] });
+  }
+};
 
 export const search = (req, res) => {
   const { term } = req.query;
