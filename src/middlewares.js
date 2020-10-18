@@ -6,5 +6,5 @@ export const localsMiddleware = (req, res, next) => {
 };
 
 // 파일 업로드 시 사용되는 미들웨어
-const multerVideo = multer({ dest: "videos/" }); // 로컬에서 videos 파일내 저장, 나중에 s3에 저장 시킬 예정
+const multerVideo = multer({ dest: "uploads/videos/" }); // 로컬에서 uploads/videos 파일내 저장, 나중에 s3에 저장 시킬 예정
 export const uploadVideo = multerVideo.single("videoFile"); // 비디오 파일 한개만 받음, input의 name과 videoFile은 같아야 함.

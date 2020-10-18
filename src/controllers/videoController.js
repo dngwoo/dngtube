@@ -20,7 +20,7 @@ export const upload = async (req, res) => {
     res.render("upload", { pageTitle: "Upload" });
   } else if (req.method === "POST") {
     const {
-      file: { path },
+      file: { path }, // multer가 req.file에 비디오 정보를 담아준다.
       body: { title, description },
     } = req;
 
