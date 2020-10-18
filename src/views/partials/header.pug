@@ -6,7 +6,15 @@ header.header
             input(type="text", placeholder="Search by term...", name="term")
     .header__column
         ul
-            li
-                a(href="/join") Join
-            li
-                a(href="/login") Log In
+            if !user.isAuthenticated
+                li
+                    a(href="/join") Join
+                li
+                    a(href="/login") Log In
+            else
+                li
+                    a(href="/videos/upload") Upload
+                li
+                    a(href=`/videos/${user.id}`) Profile
+                li
+                    a(href="/logout") Log Out

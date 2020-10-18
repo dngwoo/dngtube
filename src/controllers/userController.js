@@ -12,7 +12,15 @@ export const join = (req, res) => {
     }
   }
 };
-export const login = (req, res) => res.render("login", { pageTitle: "Login" });
+
+export const login = (req, res) => {
+  if (req.method === "GET") {
+    res.render("login", { pageTitle: "Login" });
+  } else if (req.method === "POST") {
+    res.redirect("/");
+  }
+};
+
 export const logout = (req, res) =>
   res.render("logout", { pageTitle: "Logout" });
 export const userDetail = (req, res) =>
