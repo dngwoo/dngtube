@@ -2,7 +2,7 @@ extends templates/layout
 
 block content
     .form-container
-        form(action=`/videos/:id/edit`, method="post")
+        form(action=`/videos/${video.id}/edit`, method="post")
             input(type="text", placeholder="Title", name="title")
             textarea(name="description", placeholder="Description")
             input(type="submit", value="Update Video")
