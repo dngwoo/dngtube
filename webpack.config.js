@@ -4,15 +4,15 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // 따로 css�
 
 module.exports = {
   mode: "development",
-  entry: { main: "./src/assets/main.js" },
+  entry: { main: "./src/assets/js/main.js" },
   module: {
     rules: [
       {
         test: /\.s[ac]ss$/i,
         use: [
           process.env.NODE_ENV === "production"
-            ? MiniCssExtractPlugin.loader
-            : "style-loader", // js로 읽은 css를 돔에 입혀줌
+            ? "style-loader"
+            : MiniCssExtractPlugin.loader, // js로 읽은 css를 돔에 입혀줌
           "css-loader", // css 파일 읽어서 js로 넣어줌.
           {
             loader: "postcss-loader",
@@ -42,7 +42,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     ...(process.env.NODE_ENV === "production"
-      ? [new MiniCssExtractPlugin({ filename: `[name].css` })]
-      : []),
+      ? []
+      : [new MiniCssExtractPlugin({ filename: `[name].css` })]),
   ],
 };

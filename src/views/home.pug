@@ -2,9 +2,10 @@ extends templates/layout
 include mixins/videoBlock
 
 block content
-    .videos
+    .home-videos
         each video in videos
             +videoBlock({
+                id: vidoe.id,
                 title: video.title,
                 views: video.views,
                 videoFile: video.fileUrl
