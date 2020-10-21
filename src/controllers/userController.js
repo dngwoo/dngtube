@@ -1,14 +1,25 @@
-export const join = (req, res) => {
+import User from "../models/User";
+
+export const join = async (req, res) => {
   if (req.method === "GET") {
     res.render("join", { pageTitle: "Join" });
   } else if (req.method === "POST") {
-    const { password, password2 } = req.body;
-    console.log(password, password2);
+    const { name, email, password, password2 } = req.body;
     if (password !== password2) {
       res.status(400); // 클라이언트 에러, 비번틀림
       res.render("join", { pageTitle: "Join" });
     } else {
-      res.redirect("/"); // 로그인 시 home으로 감
+      try {
+        const user = await User({
+          name,
+          email,
+        });
+        await User.register(user, password); // passport-local-mongoose
+      } catch (error) {
+        console.error(error);
+      } finally {
+        res.redirect("/");
+      }
     }
   }
 };

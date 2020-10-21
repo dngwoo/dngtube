@@ -3,7 +3,7 @@ import multer from "multer";
 export const localsMiddleware = (req, res, next) => {
   res.locals.siteTitle = "dngtube";
   res.locals.user = {
-    isAuthenticated: true,
+    isAuthenticated: false,
   };
   next();
 };
