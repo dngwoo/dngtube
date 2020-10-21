@@ -1,6 +1,7 @@
+import passport from "passport";
 import User from "../models/User";
 
-export const join = async (req, res) => {
+export const join = async (req, res, next) => {
   if (req.method === "GET") {
     res.render("join", { pageTitle: "Join" });
   } else if (req.method === "POST") {
@@ -15,9 +16,9 @@ export const join = async (req, res) => {
           email,
         });
         await User.register(user, password); // passport-local-mongoose
+        next(); // postLogin으로 가게 된다. 회원가입되면 바로 로그인 시킨다.
       } catch (error) {
         console.error(error);
-      } finally {
         res.redirect("/");
       }
     }
@@ -28,7 +29,15 @@ export const login = (req, res) => {
   if (req.method === "GET") {
     res.render("login", { pageTitle: "Login" });
   } else if (req.method === "POST") {
-    res.redirect("/");
+    console.log(req.body.password);
+    // postJoin에서 정보를 그대로 받아와서 로그인 시킴.
+    // 그 정보들이 없으면 authenticate 사용 불가.
+    passport.authenticate("local", {
+      failureRedirect: "/login",
+      successRedirect: "/",
+    });
+
+    console.log("왜안되지 미치겠네 ㅋㅋ");
   }
 };
 
