@@ -2,7 +2,8 @@ import multer from "multer";
 
 export const localsMiddleware = (req, res, next) => {
   res.locals.siteTitle = "dngtube";
-  res.locals.user = req.user || {}; // passport가 user가 담긴 오브젝트를 req.user에 담아줌.
+  res.locals.user = req.user || null; // passport가 user가 담긴 오브젝트를 req.user에 담아줌.
+  console.log("user 정보", req.user);
   next();
 };
 
